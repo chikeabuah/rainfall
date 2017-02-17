@@ -1,0 +1,14 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Body:</strong>
+  <%= @snapshot.body %>
+</p>
+
+<p>
+  <strong>Session:</strong>
+  <%= @snapshot.session_id %>
+</p>
+
+<%= link_to 'Edit', edit_snapshot_path(@snapshot) %> |
+<%= link_to 'Back', snapshots_path %>

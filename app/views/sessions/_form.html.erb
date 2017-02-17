@@ -1,0 +1,43 @@
+<%= form_for(@session) do |f| %>
+  <% if @session.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@session.errors.count, "error") %> prohibited this session from being saved:</h2>
+
+      <ul>
+      <% @session.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <label>Email</label><br>
+    <input type="email" name="email" required="required">
+  </div>
+  <div class="field">
+    <%= f.label :current_status, "What is your current student status?" %><br>
+      <select>
+        <option value="1">First Year Student</option>
+        <option value="2">Second Year Student</option>
+        <option value="3">Third Year Student</option>
+        <option value="4">Fourth Year Student</option>
+        <option value="5">Graduate Student</option>
+      </select><br> 
+  </div>    
+  <div class="field">
+    <%= f.label :experience_years, "How many years of programming experience do you have?" %><br>
+    <%= f.text_field :experience_years, :required => "required" %>
+  </div>
+  <div class="field">
+    <%= f.label :cs_major, "Please check this box if you are a CS Major." %><br>
+    <%= f.check_box :cs_major %>
+  </div>
+  <div class="field">
+    <%= f.label :alternative_language, "If you are using a different language from C, please enter its name here." %><br>
+    <%= f.text_field :alternative_language, :required => 'required' %>
+  </div>
+  <div class="actions">
+    <%= f.submit  "Submit Survey", :class => 'btn btn-primary' %>
+  </div>
+<% end %>

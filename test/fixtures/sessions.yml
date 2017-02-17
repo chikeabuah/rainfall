@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  current_status: MyString
+  experience_years: 1.5
+  cs_major: false
+  alternative_language: MyString
+
+two:
+  current_status: MyString
+  experience_years: 1.5
+  cs_major: false
+  alternative_language: MyString

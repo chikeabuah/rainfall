@@ -1,0 +1,24 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Current status:</strong>
+  <%= @session.current_status %>
+</p>
+
+<p>
+  <strong>Experience years:</strong>
+  <%= @session.experience_years %>
+</p>
+
+<p>
+  <strong>Cs major:</strong>
+  <%= @session.cs_major %>
+</p>
+
+<p>
+  <strong>Alternative language:</strong>
+  <%= @session.alternative_language %>
+</p>
+
+<%= link_to 'Edit', edit_session_path(@session) %> |
+<%= link_to 'Back', sessions_path %>
