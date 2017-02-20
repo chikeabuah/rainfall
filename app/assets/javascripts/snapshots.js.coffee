@@ -13,9 +13,8 @@ $(document).ready(()->
 	        data:
 	         	session_id: 2 #TODO
 	         	body: snapshots
-	        success: (res) ->
-				# tagId = JSON.parse(res)["id"]
-			)
+	        success: (res) -> window.location = '/sessions'
+	)
 	$("#snapshot-area").keypress((e) -> 
 		keycode = if e.keyCode then e.keyCode else e.which
 		if keycode == 13

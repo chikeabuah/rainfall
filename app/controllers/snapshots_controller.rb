@@ -24,25 +24,14 @@ class SnapshotsController < ApplicationController
   # POST /snapshots
   # POST /snapshots.json
   def create
-    # params = snapshot_params
-    require 'byebug'
-
     session_id = params["session_id"]
     snapshots = params["body"]
-    # byebug
     snapshots.each do |k, snapshot|
-      # byebug
       s = Snapshot.new
       s.session_id = session_id
       s.body = snapshot["body"]
       s.recorded_at = Time.at(snapshot["time"].to_i/1000)
       s.save!
-    end
-
-    respond_to do |format|
-      format.html { redirect_to '/sessions', notice: 'Snapshot was successfully created.' }
-      msg = { status: 'ok', message: 'Success!' }
-      format.json { render json: msg }
     end
   end
 
