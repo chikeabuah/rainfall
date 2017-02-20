@@ -11,6 +11,17 @@
     </div>
   <% end %>
 
+  <div class="row"> 
+    <div class="col-sm-4 field">
+      Placeholder for consent information and study information.
+      Placeholder for consent information and study information.
+      Placeholder for consent information and study information.
+      Placeholder for consent information and study information.
+      Placeholder for consent information and study information.
+    </div>
+  </div>
+
+
   <div class="field">
     <label>Email</label><br>
     <input type="email" name="email" required="required">
@@ -34,10 +45,10 @@
     <%= f.check_box :cs_major %>
   </div>
   <div class="field">
-    <%= f.label :alternative_language, "If you are using a different language from C, please enter its name here." %><br>
+    <%= f.label :alternative_language, "Please enter the name of the programming language you will use." %><br>
     <%= f.text_field :alternative_language, :required => 'required' %>
   </div>
   <div class="actions">
-    <%= f.submit  "Submit Survey", :class => 'btn btn-primary' %>
+    <%= f.submit  "I consent and agree to continue", :class => 'btn btn-primary' %>
   </div>
 <% end %>

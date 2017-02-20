@@ -24,16 +24,25 @@ class SnapshotsController < ApplicationController
   # POST /snapshots
   # POST /snapshots.json
   def create
-    @snapshot = Snapshot.new(snapshot_params)
+    # params = snapshot_params
+    require 'byebug'
+
+    session_id = params["session_id"]
+    snapshots = params["body"]
+    # byebug
+    snapshots.each do |k, snapshot|
+      # byebug
+      s = Snapshot.new
+      s.session_id = session_id
+      s.body = snapshot["body"]
+      s.recorded_at = Time.at(snapshot["time"].to_i/1000)
+      s.save!
+    end
 
     respond_to do |format|
-      if @snapshot.save
-        format.html { redirect_to @snapshot, notice: 'Snapshot was successfully created.' }
-        format.json { render :show, status: :created, location: @snapshot }
-      else
-        format.html { render :new }
-        format.json { render json: @snapshot.errors, status: :unprocessable_entity }
-      end
+      format.html { redirect_to '/sessions', notice: 'Snapshot was successfully created.' }
+      msg = { status: 'ok', message: 'Success!' }
+      format.json { render json: msg }
     end
   end
 
@@ -69,6 +78,6 @@ class SnapshotsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def snapshot_params
-      params.require(:snapshot).permit(:body, :session_id)
+      params.permit(:body, :session_id)
     end
 end
