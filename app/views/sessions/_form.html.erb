@@ -24,17 +24,16 @@
 
   <div class="field">
     <label>Email</label><br>
-    <input type="email" name="email" required="required">
+    <input type="email" name="email" required="required", id="email">
   </div>
   <div class="field">
     <%= f.label :current_status, "What is your current student status?" %><br>
-      <select>
-        <option value="1">First Year Student</option>
-        <option value="2">Second Year Student</option>
-        <option value="3">Third Year Student</option>
-        <option value="4">Fourth Year Student</option>
-        <option value="5">Graduate Student</option>
-      </select><br> 
+    <%= f.select :current_status, [['First Year Student','First Year Student'],
+     ['Second Year Student','Second Year Student'],
+
+      ['Third Year Student','Third Year Student'],
+       ['Fourth Year Student','Fourth Year Student'],
+        ['Graduate Student','Graduate Student']] %>
   </div>    
   <div class="field">
     <%= f.label :experience_years, "How many years of programming experience do you have?" %><br>
@@ -49,6 +48,6 @@
     <%= f.text_field :alternative_language, :required => 'required' %>
   </div>
   <div class="actions">
-    <%= f.submit  "I consent and agree to continue", :class => 'btn btn-primary' %>
+    <%= f.submit  "I consent and agree to continue", :class => 'btn btn-primary', :id => 'submit-survey' %>
   </div>
 <% end %>

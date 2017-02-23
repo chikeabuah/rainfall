@@ -9,11 +9,16 @@ Rails.application.routes.draw do
   # See how all your routes lay out with "rake routes".
 
   # You can have the root of your site routed with "root"
-  root 'snapshots#new'
+  root 'sessions#new'
 
   post 'snapshots/create' => 'snapshots#create'
 
-  get 'session/new' => 'sessions#new'
+  post 'users/create' => 'users#create'
+
+  # get 'session/new' => 'sessions#new'
+
+  get 'snapshots/new' => 'snapshots#new'
+
 
   get 'sessions/' => 'sessions#index'
 

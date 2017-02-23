@@ -25,16 +25,16 @@ class SessionsController < ApplicationController
   # POST /sessions.json
   def create
     @session = Session.new(session_params)
-
-    respond_to do |format|
-      if @session.save
-        format.html { redirect_to @session, notice: 'Session was successfully created.' }
-        format.json { render :show, status: :created, location: @session }
-      else
-        format.html { render :new }
-        format.json { render json: @session.errors, status: :unprocessable_entity }
-      end
-    end
+    redirect_to '/snapshots/new'
+    # respond_to do |format|
+    #   if @session.save
+    #     format.html { redirect_to @session, notice: 'Session was successfully created.' }
+    #     format.json { render :show, status: :created, location: @session }
+    #   else
+    #     format.html { render :new }
+    #     format.json { render json: @session.errors, status: :unprocessable_entity }
+    #   end
+    # end
   end
 
   # PATCH/PUT /sessions/1
