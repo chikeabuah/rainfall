@@ -13,11 +13,16 @@
 
 ActiveRecord::Schema.define(version: 20170217164654) do
 
+  # These are extensions that must be enabled in order to support this database
+  enable_extension "plpgsql"
+
   create_table "sessions", force: true do |t|
-    t.string   "current_status",                     null: false
-    t.float    "experience_years",                   null: false
-    t.boolean  "cs_major",                           null: false
-    t.string   "alternative_language", default: "C", null: false
+    t.string   "current_status",                   null: false
+    t.float    "experience_years",                 null: false
+    t.boolean  "cs_major",                         null: false
+    t.string   "language",           default: "C", null: false
+    t.string   "access_key"
+    t.boolean  "access_key_revoked"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
