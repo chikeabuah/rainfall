@@ -1,14 +1,14 @@
 <div class="row" style="height: 100%">
   <div class="col-sm-4" style="height: 100%">
 
-    <div class="form-group" style="height: 100%">
-      <label for="snapshot-area">Write  a  program  that  will  read  in  integers  and
-          output  their  average.    Stop  reading  when  the
-          value 9999 is input. Do not include the value 9999 in the average.</label>
-      <div style="height: 90%" class="form-control" id="snapshot-area" onpaste="return false"></div>
-    </div>
+    <label for="snapshot-area">Write  a  program  that  will  read  in  integers  and
+        output  their  average.    Stop  reading  when  the
+        value 9999 is input. Do not include the value 9999 in the average.</label>
+    <label for="snapshot-area">Please write your program without compiling and/or testing your code.
+    Please do not prepare your code in a separate editor/buffer.</label>
+    <div style="height: 90%" class="form-control" id="snapshot-area" onpaste="return false"></div>
 
-    <div class="actions">
+    <div class="actions" style="margin-top: 5%;">
       <button type="button" class="btn btn-primary", id='submit-solution'> Submit Solution </button>
     </div>
 
@@ -20,5 +20,8 @@
     var editor = ace.edit("snapshot-area");
     editor.setTheme("ace/theme/monokai");
     editor.getSession().setMode("ace/mode/c_cpp");
+    editor.setOptions({
+      fontSize: "16pt",
+    });
     editor.resize()
 </script>

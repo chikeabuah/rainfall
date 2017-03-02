@@ -11,11 +11,19 @@
     </div>
   <% end %>
 
+  <div>
+  We will be giving away one Kennedy College of Sciences Sweatshirt in a lottery.
+  The jacket will be given away to a randomly selected participant.
+  </div><br>
+  <div>
+   Please make sure to fill in the below box that asks you for your email address if you want to be entered in the drawing for the sweatshirt.
+  </div><br>
+
   <div class="field">
     <%= f.label :email %><br>
     <%= f.text_field :email %>
   </div>
   <div class="actions">
-    <%= f.submit %>
+    <%= f.submit "Submit", :class => 'btn btn-primary'%>
   </div>
 <% end %>

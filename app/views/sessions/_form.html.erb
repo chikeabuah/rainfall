@@ -13,26 +13,51 @@
 
   <div class="row"> 
     <div class="col-sm-4 field">
-      Placeholder for consent information and study information.
-      Placeholder for consent information and study information.
-      Placeholder for consent information and study information.
-      Placeholder for consent information and study information.
-      Placeholder for consent information and study information.
+
+      <div>
+      Our study hopes to answer the question, “How does prior programming experience impact coding strategy?” The study will look for the relationship between prior experience and coding strategies employed by the participant. 
+      </div><br>
+
+
+      <div>
+      The study is led by Prof. Fred Martin, Director of Student Success for the Kennedy College of Sciences. It is approved by UMass Lowell’s Institutional Review Board (IRB), which reviews all research conducted with human subjects.</div><br>
+       
+      <div>
+      If you participate, you will take this survey which will ask you questions about basic academic information and your programming background. The programming task and questions may take about 10 minutes to complete. </div><br>
+       
+      <div>
+      As an incentive, we will be giving away one Kennedy College of Sciences Sweatshirt in a lottery. The jacket will be given away to a randomly selected participant. Please make sure to fill in the box that asks you for your email address if you want to be entered in the drawing for the sweatshirt.
+      </div><br>
+
+
+      <div> 
+      Participation in the study involves not more than minimal risk of disclosure of your information. Responses that you provide will only be reported in an aggregate, statistical form. Your email address will be collected but will not be associated with your responses at any stage. You will be writing code and sending it to us. We will be taking a snapshot of your buffer every time you hit return. The researchers have an approved protocol to ensure that your private information will not be disclosed. 
+      </div><br>
+       
+      <div>
+      Your participation or non-participation will have no negative consequences to your academic grade in any course in the University. You can withdraw from the study at any time without penalty. Participation is entirely voluntary, and your choice will be kept confidential. You must be 18 years or older to participate.
+      </div><br>
+
+      <div>
+       
+      Participation in the study may lead to improvements in our understanding of Computer Science pedagogy.
+      </div><br>
+       
+      <div>
+      For more information, please contact Prof. Martin at fred_martin@uml.edu or 978/934-1964.
+      </div><br>
+ 
     </div>
   </div>
 
 
   <div class="field">
-    <label>Email</label><br>
-    <input type="email" name="email" required="required", id="email">
-  </div>
-  <div class="field">
     <%= f.label :current_status, "What is your current student status?" %><br>
-    <%= f.select :current_status, [['First Year Student','First Year Student'],
-     ['Second Year Student','Second Year Student'],
+    <%= f.select :current_status, [['First Year Undergraduate','First Year Undergraduate'],
+     ['Second Year Undergraduate','Second Year Undergraduate'],
 
-      ['Third Year Student','Third Year Student'],
-       ['Fourth Year Student','Fourth Year Student'],
+      ['Third Year Undergraduate','Third Year Undergraduate'],
+       ['Fourth Year Undergraduate','Fourth Year Undergraduate'],
         ['Graduate Student','Graduate Student']] %>
   </div>    
   <div class="field">
@@ -45,6 +70,7 @@
   </div>
   <div class="field">
     <%= f.label :language, "Please enter the name of the programming language you will use." %><br>
+    <%= f.label :language, "We encourage you to use the C programming language." %><br>
     <%= f.text_field :language, :required => 'required' %>
   </div>
   <div class="actions">

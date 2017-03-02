@@ -33,7 +33,7 @@ class SnapshotsController < ApplicationController
       s.recorded_at = Time.at(snapshot["time"].to_i/1000)
       s.save!
     end
-    redirect_to '/sessions'
+    redirect_to '/users/new'
   end
 
   # PATCH/PUT /snapshots/1
