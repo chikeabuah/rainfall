@@ -14,3 +14,10 @@
  *= require_self
  *= require bootstrap.min
  */
+ html {
+ 	height: 100%;
+ }
+
+ body {
+ 	min-height: 100%;
+ }

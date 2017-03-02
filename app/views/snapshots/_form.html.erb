@@ -1,11 +1,11 @@
-<div class="row">
-  <div class="col-sm-4">
+<div class="row" style="height: 100%">
+  <div class="col-sm-4" style="height: 100%">
 
-    <div class="form-group">
+    <div class="form-group" style="height: 100%">
       <label for="snapshot-area">Write  a  program  that  will  read  in  integers  and
           output  their  average.    Stop  reading  when  the
-          value 99999 is input.</label>
-      <textarea class="form-control" id="snapshot-area" rows="30" onpaste="return false"></textarea>
+          value 9999 is input. Do not include the value 9999 in the average.</label>
+      <div style="height: 90%" class="form-control" id="snapshot-area" onpaste="return false"></div>
     </div>
 
     <div class="actions">
@@ -15,3 +15,10 @@
   </div>
 
 </div>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/ace/1.2.6/ace.js" integrity="sha256-xrr4HH5eSY+cFz4SH7ja/LaAi9qcEdjMpeMP49/iOLs=" crossorigin="anonymous"></script>
+<script>
+    var editor = ace.edit("snapshot-area");
+    editor.setTheme("ace/theme/monokai");
+    editor.getSession().setMode("ace/mode/c_cpp");
+    editor.resize()
+</script>
