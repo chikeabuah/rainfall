@@ -15,6 +15,23 @@ class SnapshotsController < ApplicationController
   # GET /snapshots/new
   def new
     @snapshot = Snapshot.new
+    valid = true
+    @access_key = params[:access_key]
+    session = Session.where(:access_key => @access_key)
+    if session.empty?
+      valid = false
+    elsif session.first.coding_access_revoked
+      valid = false
+    end
+    if !valid
+      flash[:error] = "Error invalid permissions for coding problem"
+      redirect_to '/'
+    end
+    if valid
+      return @snapshot
+    else
+      return nil
+    end
   end
 
   # GET /snapshots/1/edit
@@ -26,14 +43,18 @@ class SnapshotsController < ApplicationController
   def create
     session_id = params["session_id"]
     snapshots = params["body"]
+    access_key = params["access_key"]
+    session = Session.where(:access_key => access_key).first
     snapshots.each do |k, snapshot|
       s = Snapshot.new
-      s.session_id = session_id
+      s.session_id = session.id
       s.body = snapshot["body"]
       s.recorded_at = Time.at(snapshot["time"].to_i/1000)
       s.save!
     end
-    redirect_to '/users/new'
+    session.coding_access_revoked = true
+    session.save!
+    redirect_to "/users/new?access_key=#{access_key}"
   end
 
   # PATCH/PUT /snapshots/1

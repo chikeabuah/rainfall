@@ -1,12 +1,15 @@
 <div class="row" style="height: 100%">
   <div class="col-sm-4" style="height: 100%">
 
-    <label for="snapshot-area">Write  a  program  that  will  read  in  integers  and
-        output  their  average.    Stop  reading  when  the
-        value 9999 is input. Do not include the value 9999 in the average.</label>
-    <label for="snapshot-area">Please write your program without compiling and/or testing your code.
-    Please do not prepare your code in a separate editor/buffer.</label>
+    <label for="snapshot-area">Write a program that will read in integers and output their average. Stop reading when the value 99999 is
+
+input. Do not include the value 99999 in the average.</label>
+    <label for="snapshot-area">Please construct your code here. We are more interested in your work process than your code’s
+
+correctness. Your solution does not need to be correct to be entered in the lottery.</label>
     <div style="height: 90%" class="form-control" id="snapshot-area" onpaste="return false"></div>
+
+    <%= hidden_field_tag 'access_key', @access_key %>
 
     <div class="actions" style="margin-top: 5%;">
       <button type="button" class="btn btn-primary", id='submit-solution'> Submit Solution </button>

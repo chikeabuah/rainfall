@@ -9,6 +9,7 @@ $(document).ready(()->
 	$("#submit-solution").click((e)->
 		e.preventDefault()
 		snap = $("#snapshot-area").val()
+		access_key = $("#access_key").val()
 		time = (new Date).getTime()
 		snapshots.push({body: snap, time: time})
 		$.ajax
@@ -16,7 +17,7 @@ $(document).ready(()->
 	        url: '/snapshots/create'
 	        type: 'POST'
 	        data:
-	         	session_id: 2 #TODO
+	         	access_key: access_key
 	         	body: snapshots
 	        success: (res) -> window.location = '/users/new'
 	)

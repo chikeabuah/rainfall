@@ -1,3 +1,5 @@
+require 'digest/md5'
+
 class SessionsController < ApplicationController
   before_action :set_session, only: [:show, :edit, :update, :destroy]
 
@@ -25,7 +27,9 @@ class SessionsController < ApplicationController
   # POST /sessions.json
   def create
     @session = Session.new(session_params)
-    redirect_to '/snapshots/new'
+    @session.access_key = Digest::MD5.hexdigest(rand.to_s)
+    @session.save!
+    redirect_to "/snapshots/new?access_key=#{@session.access_key}"
     # respond_to do |format|
     #   if @session.save
     #     format.html { redirect_to @session, notice: 'Session was successfully created.' }
@@ -69,6 +73,6 @@ class SessionsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def session_params
-      params.require(:session).permit(:current_status, :experience_years, :cs_major, :alternative_language)
+      params.require(:session).permit(:current_status, :experience_years, :cs_major, :language)
     end
 end

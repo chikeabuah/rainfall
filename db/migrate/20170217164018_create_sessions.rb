@@ -5,8 +5,9 @@ class CreateSessions < ActiveRecord::Migration
       t.float :experience_years, :null => false
       t.boolean :cs_major, :null => false
       t.string :language, :default => "C", :null => false
-      t.string :access_key
-      t.boolean :access_key_revoked
+      t.string :access_key, :null => false
+      t.boolean :coding_access_revoked, :default => false
+      t.boolean :lottery_access_revoked, :default => false
       t.timestamps
     end
   end
