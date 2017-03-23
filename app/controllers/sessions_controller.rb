@@ -30,15 +30,6 @@ class SessionsController < ApplicationController
     @session.access_key = Digest::MD5.hexdigest(rand.to_s)
     @session.save!
     redirect_to "/snapshots/new?access_key=#{@session.access_key}"
-    # respond_to do |format|
-    #   if @session.save
-    #     format.html { redirect_to @session, notice: 'Session was successfully created.' }
-    #     format.json { render :show, status: :created, location: @session }
-    #   else
-    #     format.html { render :new }
-    #     format.json { render json: @session.errors, status: :unprocessable_entity }
-    #   end
-    # end
   end
 
   # PATCH/PUT /sessions/1
