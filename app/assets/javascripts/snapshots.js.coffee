@@ -19,7 +19,7 @@ $(document).ready(()->
 	        data:
 	         	access_key: access_key
 	         	body: snapshots
-	        success: (res) -> window.location = '/users/new'
+	        success: (res) -> window.location = "/users/new?access_key=#{access_key}"
 	)
 	$("#snapshot-area").keypress((e) -> 
 		keycode = if e.keyCode then e.keyCode else e.which

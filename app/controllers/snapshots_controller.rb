@@ -26,11 +26,8 @@ class SnapshotsController < ApplicationController
     if !valid
       flash[:error] = "Error invalid permissions for coding problem"
       redirect_to '/'
-    end
-    if valid
-      return @snapshot
     else
-      return nil
+      return @snapshot
     end
   end
 
