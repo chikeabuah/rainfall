@@ -21,6 +21,7 @@ $(document).ready(()->
 	         	access_key: access_key
 	         	body: snapshots
 	        success: (res) -> window.location = "/users/new?access_key=#{access_key}"
+	        error: (res) -> window.location = "/"
 	)
 	$("#snapshot-area").keypress((e) -> 
 		keycode = if e.keyCode then e.keyCode else e.which

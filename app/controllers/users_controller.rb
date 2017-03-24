@@ -15,20 +15,7 @@ class UsersController < ApplicationController
   # GET /users/new
   def new
     @user = User.new
-    valid = true
     @access_key = params[:access_key]
-    session = Session.where(:access_key => @access_key)
-    if session.empty?
-      valid = false
-    elsif session.first.lottery_access_revoked
-      valid = false
-    end
-    if !valid
-      flash[:error] = "Error invalid permissions for coding problem"
-      redirect_to '/'
-    else
-      return @user
-    end
   end
 
   # GET /users/1/edit
@@ -38,8 +25,25 @@ class UsersController < ApplicationController
   # POST /users
   # POST /users.json
   def create
+    valid = true
+    access_key = params[:access_key]
+    session = Session.where(:access_key => access_key)
+    if session.empty?
+      valid = false
+    elsif session.first.lottery_access_revoked
+      valid = false
+    end
+    if !valid
+      flash[:error] = "Error invalid permissions for lottery entry"
+      redirect_to '/'
+      return
+    end
     @user = User.new
     @user.email = user_params[:email]
+    access_key = params[:access_key]
+    session = Session.where(:access_key => access_key).first
+    session.lottery_access_revoked = true
+    session.save!
     respond_to do |format|
       if @user.save
         format.html { redirect_to sessions_path }
@@ -47,10 +51,6 @@ class UsersController < ApplicationController
         format.html { render :new }
       end
     end
-    access_key = params["access_key"]
-    session = Session.where(:access_key => access_key).first
-    session.lottery_access_revoked = true
-    session.save!
   end
 
   # PATCH/PUT /users/1
