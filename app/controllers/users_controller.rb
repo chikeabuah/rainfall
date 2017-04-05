@@ -15,6 +15,7 @@ class UsersController < ApplicationController
   # GET /users/new
   def new
     @user = User.new
+    @access_key = params[:access_key]
   end
 
   # GET /users/1/edit
@@ -24,11 +25,28 @@ class UsersController < ApplicationController
   # POST /users
   # POST /users.json
   def create
+    valid = true
+    access_key = params[:access_key]
+    session = Session.where(:access_key => access_key)
+    if session.empty?
+      valid = false
+    elsif session.first.lottery_access_revoked
+      valid = false
+    end
+    if !valid
+      flash[:error] = "Error invalid permissions for lottery entry"
+      redirect_to '/'
+      return
+    end
     @user = User.new
     @user.email = user_params[:email]
+    access_key = params[:access_key]
+    session = Session.where(:access_key => access_key).first
+    session.lottery_access_revoked = true
+    session.save!
     respond_to do |format|
       if @user.save
-        format.html { redirect_to sessions_path, notice: 'Success!' }
+        format.html { redirect_to sessions_path }
       else
         format.html { render :new }
       end

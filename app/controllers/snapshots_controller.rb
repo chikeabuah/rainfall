@@ -15,23 +15,7 @@ class SnapshotsController < ApplicationController
   # GET /snapshots/new
   def new
     @snapshot = Snapshot.new
-    valid = true
-    @access_key = params[:access_key]
-    session = Session.where(:access_key => @access_key)
-    if session.empty?
-      valid = false
-    elsif session.first.coding_access_revoked
-      valid = false
-    end
-    if !valid
-      flash[:error] = "Error invalid permissions for coding problem"
-      redirect_to '/'
-    end
-    if valid
-      return @snapshot
-    else
-      return nil
-    end
+    @access_key = params[:access_key]   
   end
 
   # GET /snapshots/1/edit
@@ -41,9 +25,28 @@ class SnapshotsController < ApplicationController
   # POST /snapshots
   # POST /snapshots.json
   def create
-    session_id = params["session_id"]
-    snapshots = params["body"]
-    access_key = params["access_key"]
+    valid = true
+    access_key = params[:access_key]
+    session = Session.where(:access_key => access_key)
+    if session.empty?
+      valid = false
+    elsif session.first.coding_access_revoked
+      valid = false
+    end
+    if !valid
+      respond_to do |format|
+        format.html do 
+          flash[:error] = "Error invalid permissions for coding problem"
+          redirect_to '/'
+        end
+        format.json do 
+          render status: 401, json: {status: 401}
+        end
+      end
+      return
+    end
+    session_id = params[:session_id]
+    snapshots = params[:body]
     session = Session.where(:access_key => access_key).first
     snapshots.each do |k, snapshot|
       s = Snapshot.new

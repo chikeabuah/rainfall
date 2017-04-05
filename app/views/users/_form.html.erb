@@ -22,6 +22,8 @@ The winner will be announced on April 13, 2017.
    Please enter your email in the box below if you want to be entered in the drawing for the sweatshirt.
   </div><br>
 
+  <%= hidden_field_tag 'access_key', @access_key %>
+
   <div class="field">
     <%= f.label :email %><br>
     <%= f.text_field :email %>

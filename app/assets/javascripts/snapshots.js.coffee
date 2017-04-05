@@ -8,7 +8,8 @@ $(document).ready(()->
 	snapshots = []
 	$("#submit-solution").click((e)->
 		e.preventDefault()
-		snap = $("#snapshot-area").val()
+		editor = ace.edit("snapshot-area")
+		snap = editor.getValue()
 		access_key = $("#access_key").val()
 		time = (new Date).getTime()
 		snapshots.push({body: snap, time: time})
@@ -19,12 +20,14 @@ $(document).ready(()->
 	        data:
 	         	access_key: access_key
 	         	body: snapshots
-	        success: (res) -> window.location = '/users/new'
+	        success: (res) -> window.location = "/users/new?access_key=#{access_key}"
+	        error: (res) -> window.location = "/"
 	)
 	$("#snapshot-area").keypress((e) -> 
 		keycode = if e.keyCode then e.keyCode else e.which
 		if keycode == 13
-			snap = $("#snapshot-area").val()
+			editor = ace.edit("snapshot-area")
+			snap = editor.getValue()
 			time = (new Date).getTime()
 			snapshots.push({body: snap, time: time})
 	)
