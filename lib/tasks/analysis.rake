@@ -78,6 +78,10 @@ namespace :rainfall do
 	  	experience = valid_sessions.all.map {|v| v.experience_years.to_f}
 
 	  	puts "Avg TOTAL experience: #{experience.mean}"
+	  	puts "Avg TIME taken: #{valid_sessions.all.map {|s| s.time_taken}.mean/60} minutes"
+	  	puts "STD DEV TIME taken: #{sigma(valid_sessions.all.map {|s| s.time_taken})/60} minutes"
+
+
 	  	puts "STD DEV TOTAL experience: #{sigma(experience)}"
 
 	  	snapshot_counts = Snapshot.group(:session_id).count.to_a.map { |a| a[1] }
