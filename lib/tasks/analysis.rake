@@ -98,7 +98,19 @@ namespace :rainfall do
 	  	puts "Correlation of experience_years to coding duration: #{correlate(exp_to_duration)}"
 	  	puts "Correlation of experience_years to character length of solution: #{correlate(exp_to_solution_len)}"
 
+	  	rp_array = valid_sessions.all.map {|v| v.solution_rp?}
+	  	rp_experience = valid_sessions.all.map {|v| v.rp_years}.compact
+	  	attempt_array = valid_sessions.all.map {|v| v.solution_attempt?}
+	  	pr_array = valid_sessions.all.map {|v| v.solution_pr?}
+	  	pr_experience = valid_sessions.all.map {|v| v.pr_years}.compact
 
+	  	puts "# read process solutions: #{rp_array.count(true)}"
+	  	puts "avg exp of read process group: #{rp_experience.mean}"
+
+	  	puts "# process read solutions: #{pr_array.count(true)}"
+	  	puts "avg exp of process read group: #{pr_experience.mean}"
+	  	
+	  	puts "# correct attempts: #{attempt_array.count(true)}"
 
 	  end
 
